@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillTrack - Student Learning Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">S</div>
+            <div>
+                <h2>SkillTrack</h2>
+                <span>Learning Portal</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="#" class="nav-link active" onclick="showSection('dashboard', this)">
+                <span>📊</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-link" onclick="showSection('courses', this)">
+                <span>📚</span>
+                My Courses
+            </a>
+
+            <a href="#" class="nav-link" onclick="showSection('assignments', this)">
+                <span>📝</span>
+                Assignments
+            </a>
+
+            <a href="#" class="nav-link" onclick="showSection('progress', this)">
+                <span>📈</span>
+                Progress
+            </a>
+
+            <a href="#" class="nav-link" onclick="showSection('profile', this)">
+                <span>👤</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="theme-btn" onclick="toggleTheme()">
+                🌙 <span>Dark Mode</span>
+            </button>
+
+            <button class="logout-btn" onclick="logout()">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+                <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+                <h1>Student Dashboard</h1>
+                <p>Welcome back, Chandini 👋</p>
+            </div>
+
+            <div class="top-actions">
+
+                <button class="notification" onclick="showNotification()">
+                    🔔
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="student-mini">
+
+                    <div class="avatar">
+                        C
+                    </div>
+
+                    <div>
+                        <strong>Chandini</strong>
+                        <small>Student</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="section active-section">
+
+            <!-- STAT CARDS -->
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">📚</div>
+
+                    <div>
+                        <span>Enrolled Courses</span>
+                        <h2 id="courseCount">4</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">📈</div>
+
+                    <div>
+                        <span>Overall Progress</span>
+                        <h2>68%</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✅</div>
+
+                    <div>
+                        <span>Completed</span>
+                        <h2>12</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">⏰</div>
+
+                    <div>
+                        <span>Pending Tasks</span>
+                        <h2 id="pendingCount">3</h2>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD GRID -->
+
+            <div class="dashboard-grid">
+
+                <!-- Continue Learning -->
+
+                <div class="panel large-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Continue Learning</h2>
+                            <p>Pick up where you left off</p>
+                        </div>
+
+                        <button onclick="showSection('courses')">
+                            View All
+                        </button>
+
+                    </div>
+
+
+                    <div class="course-progress-card">
+
+                        <div class="course-icon javascript">
+                            JS
+                        </div>
+
+                        <div class="course-details">
+
+                            <h3>JavaScript Fundamentals</h3>
+
+                            <p>12 of 18 lessons completed</p>
+
+                            <div class="progress-container">
+
+                                <div class="progress-bar">
+                                    <div class="progress-value" style="width: 67%"></div>
+                                </div>
+
+                                <span>67%</span>
+
+                            </div>
+
+                        </div>
+
+                        <button class="continue-btn"
+                            onclick="startCourse('JavaScript Fundamentals')">
+                            Continue
+                        </button>
+
+                    </div>
+
+
+                    <div class="course-progress-card">
+
+                        <div class="course-icon python">
+                            Py
+                        </div>
+
+                        <div class="course-details">
+
+                            <h3>Python Programming</h3>
+
+                            <p>8 of 15 lessons completed</p>
+
+                            <div class="progress-container">
+
+                                <div class="progress-bar">
+                                    <div class="progress-value" style="width: 53%"></div>
+                                </div>
+
+                                <span>53%</span>
+
+                            </div>
+
+                        </div>
+
+                        <button class="continue-btn"
+                            onclick="startCourse('Python Programming')">
+                            Continue
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Today's Tasks -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Today's Tasks</h2>
+                            <p>Stay productive</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="task-list">
+
+                        <label class="task">
+                            <input type="checkbox" onchange="updateTasks(this)">
+                            <span>
+                                Complete JavaScript quiz
+                                <small>Due today</small>
+                            </span>
+                        </label>
+
+
+                        <label class="task">
+                            <input type="checkbox" onchange="updateTasks(this)">
+                            <span>
+                                Read Python functions
+                                <small>Due today</small>
+                            </span>
+                        </label>
+
+
+                        <label class="task">
+                            <input type="checkbox" onchange="updateTasks(this)">
+                            <span>
+                                Submit CSS assignment
+                                <small>Due tomorrow</small>
+                            </span>
+                        </label>
+
+
+                        <label class="task completed-task">
+                            <input type="checkbox" checked onchange="updateTasks(this)">
+                            <span>
+                                HTML practice
+                                <small>Completed</small>
+                            </span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT ACTIVITY -->
+
+            <div class="panel activity-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Recent Activity</h2>
+                        <p>Your latest learning activities</p>
+                    </div>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">✓</div>
+
+                    <div>
+                        <strong>Completed HTML Basics</strong>
+                        <p>2 hours ago</p>
+                    </div>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">🏆</div>
+
+                    <div>
+                        <strong>Scored 92% in Python Quiz</strong>
+                        <p>Yesterday</p>
+                    </div>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">📚</div>
+
+                    <div>
+                        <strong>Started JavaScript Fundamentals</strong>
+                        <p>2 days ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= COURSES ================= -->
+
+        <section id="courses" class="section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>My Courses</h2>
+                    <p>Explore your enrolled courses</p>
+                </div>
+
+                <button class="primary-btn" onclick="openCourseModal()">
+                    + Add Course
+                </button>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    id="courseSearch"
+                    placeholder="Search courses..."
+                    onkeyup="searchCourses()">
+
+            </div>
+
+
+            <div class="course-grid" id="courseGrid">
+
+                <div class="course-card">
+
+                    <div class="course-top javascript">
+                        JavaScript
+                    </div>
+
+                    <div class="course-content">
+
+                        <span class="level">Intermediate</span>
+
+                        <h3>JavaScript Fundamentals</h3>
+
+                        <p>Learn variables, functions, DOM, events and modern JavaScript.</p>
+
+                        <div class="course-progress">
+                            <span>67% Complete</span>
+
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width:67%"></div>
+                            </div>
+                        </div>
+
+                        <button class="primary-btn"
+                            onclick="startCourse('JavaScript Fundamentals')">
+                            Continue Learning
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="course-card">
+
+                    <div class="course-top python">
+                        Python
+                    </div>
+
+                    <div class="course-content">
+
+                        <span class="level">Beginner</span>
+
+                        <h3>Python Programming</h3>
+
+                        <p>Learn Python programming from fundamentals to object-oriented programming.</p>
+
+                        <div class="course-progress">
+
+                            <span>53% Complete</span>
+
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width:53%"></div>
+                            </div>
+
+                        </div>
+
+                        <button class="primary-btn"
+                            onclick="startCourse('Python Programming')">
+                            Continue Learning
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="course-card">
+
+                    <div class="course-top html">
+                        HTML & CSS
+                    </div>
+
+                    <div class="course-content">
+
+                        <span class="level">Beginner</span>
+
+                        <h3>Web Development</h3>
+
+                        <p>Build responsive and attractive websites using HTML and CSS.</p>
+
+                        <div class="course-progress">
+
+                            <span>80% Complete</span>
+
+                            <div class="progress-bar">
+
+                                <div class="progress-value"
+                                    style="width:80%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <button class="primary-btn"
+                            onclick="startCourse('Web Development')">
+                            Continue Learning
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="course-card">
+
+                    <div class="course-top react">
+                        React
+                    </div>
+
+                    <div class="course-content">
+
+                        <span class="level">Advanced</span>
+
+                        <h3>ReactJS Development</h3>
+
+                        <p>Build interactive single-page applications using ReactJS.</p>
+
+                        <div class="course-progress">
+
+                            <span>42% Complete</span>
+
+                            <div class="progress-bar">
+
+                                <div class="progress-value"
+                                    style="width:42%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <button class="primary-btn"
+                            onclick="startCourse('ReactJS Development')">
+                            Continue Learning
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ASSIGNMENTS ================= -->
+
+        <section id="assignments" class="section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Assignments</h2>
+                    <p>Manage your learning tasks</p>
+                </div>
+
+            </div>
+
+
+            <div class="assignment-table">
+
+                <div class="table-header">
+                    <span>Assignment</span>
+                    <span>Course</span>
+                    <span>Due Date</span>
+                    <span>Status</span>
+                    <span>Action</span>
+                </div>
+
+
+                <div class="table-row">
+
+                    <span>JavaScript DOM Practice</span>
+                    <span>JavaScript</span>
+                    <span>24 Sep 2026</span>
+
+                    <span class="status pending">
+                        Pending
+                    </span>
+
+                    <button onclick="submitAssignment(this)">
+                        Submit
+                    </button>
+
+                </div>
+
+
+                <div class="table-row">
+
+                    <span>Python Functions</span>
+                    <span>Python</span>
+                    <span>25 Sep 2026</span>
+
+                    <span class="status pending">
+                        Pending
+                    </span>
+
+                    <button onclick="submitAssignment(this)">
+                        Submit
+                    </button>
+
+                </div>
+
+
+                <div class="table-row">
+
+                    <span>Responsive Website</span>
+                    <span>HTML & CSS</span>
+                    <span>20 Sep 2026</span>
+
+                    <span class="status completed">
+                        Completed
+                    </span>
+
+                    <button disabled>
+                        Submitted
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROGRESS ================= -->
+
+        <section id="progress" class="section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Learning Progress</h2>
+                    <p>Track your performance</p>
+                </div>
+
+            </div>
+
+
+            <div class="progress-summary">
+
+                <div class="big-progress">
+
+                    <div class="circle-progress">
+                        <span>68%</span>
+                    </div>
+
+                    <h3>Overall Progress</h3>
+                    <p>Keep learning to reach your goal!</p>
+
+                </div>
+
+
+                <div class="progress-list">
+
+                    <div class="progress-item">
+
+                        <div>
+                            <strong>JavaScript</strong>
+                            <span>67%</span>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width:67%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div>
+                            <strong>Python</strong>
+                            <span>53%</span>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width:53%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div>
+                            <strong>HTML & CSS</strong>
+                            <span>80%</span>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width:80%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div>
+                            <strong>ReactJS</strong>
+                            <span>42%</span>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width:42%"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROFILE ================= -->
+
+        <section id="profile" class="section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>My Profile</h2>
+                    <p>Manage your personal information</p>
+                </div>
+
+            </div>
+
+
+            <div class="profile-card">
+
+                <div class="profile-avatar">
+                    C
+                </div>
+
+                <h2>Chandini</h2>
+
+                <p>Full Stack Web Development Student</p>
+
+
+                <div class="profile-info">
+
+                    <div>
+                        <strong>Email</strong>
+                        <span>chandini@example.com</span>
+                    </div>
+
+                    <div>
+                        <strong>Phone</strong>
+                        <span>+91 XXXXX XXXXX</span>
+                    </div>
+
+                    <div>
+                        <strong>Course</strong>
+                        <span>Full Stack Web Development</span>
+                    </div>
+
+                    <div>
+                        <strong>Joined</strong>
+                        <span>September 2026</span>
+                    </div>
+
+                </div>
+
+                <button class="primary-btn" onclick="editProfile()">
+                    Edit Profile
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= COURSE MODAL ================= -->
+
+    <div class="modal" id="courseModal">
+
+        <div class="modal-box">
+
+            <button class="close-btn" onclick="closeCourseModal()">×</button>
+
+            <h2>Add New Course</h2>
+
+            <p>Add a course to your learning dashboard.</p>
+
+            <input
+                type="text"
+                id="newCourse"
+                placeholder="Enter course name">
+
+            <button class="primary-btn" onclick="addCourse()">
+                Add Course
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div id="toast" class="toast">
+        Course started successfully!
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
